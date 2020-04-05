@@ -10,3 +10,6 @@
     background-color: red;
     width: 25%;
 }
+.alignedRight{
+    justify-content: flex-end;
+}

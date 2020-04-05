@@ -15,7 +15,7 @@ function weatherPull() {
         var placeForHumid = $("#humidity");
         var placeForWind = $("#windSpeed");
         placeForCity.text(response.name);
-        placeForTemp.text(response.main.temp);
+        placeForTemp.text((((response.main.temp-273.15)*1.8)+32).toFixed(1));
         placeForHumid.text(response.main.humidity);
         placeForWind.text(response.wind.speed);
 
@@ -41,7 +41,24 @@ function weatherPull() {
             url:fiveDayComplete,
             method: "GET"
         }).then(function(response){
-            console.log(response)
+            var fiveDayArray = [response.list[0], response.list[8], response.list[16], response.list[24], response.list[32]];
+            for (i = 0; i < fiveDayArray.length; i++){
+                var newTile = $("<div>", {class: "tile is-parent alignedRight"})
+                var newDiv = $("<div>", {class: "is-child tile notification"});
+                var toFahrenheit =  (((fiveDayArray[i].main.temp-273.15)*1.8)+32).toFixed(1);
+                var nextDayTemp = $("<p>").text("Temp: " + toFahrenheit + " °F");
+                var nextDayHumid = $("<p>").text("Humidity: " + fiveDayArray[i].main.humidity + " %");
+                newTile.append(newDiv)
+                newDiv.append(nextDayTemp);
+                newDiv.append(nextDayHumid);
+                $("#fiveDayBox").append(newTile)
+                //fiveDayArray[i].main.temp
+                
+
+
+
+
+            }
         });
 
         
