@@ -1,0 +1,12 @@
+#navigation{
+    background-color: black;
+    color: white;
+}
+.level-right{
+    background-color: teal;
+    width: 75%;
+}
+.level-left {
+    background-color: red;
+    width: 25%;
+}
