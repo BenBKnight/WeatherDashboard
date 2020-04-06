@@ -39,3 +39,15 @@
     background-color: blue;
     color: white;
 }
+.headerStyle {
+    text-align: center;
+    font-size: 3rem;
+    padding: 24px 12px;
+}
+.searchFont {
+    font-weight: bolder;
+}
+button {
+    margin-bottom: .5rem;
+    justify-content: center;
+}

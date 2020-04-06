@@ -4,14 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bulma framework link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/92a68df278.js" crossorigin="anonymous"></script>
+    <!-- local style -->
     <link rel="stylesheet" href="./assets/style.css">
     <title>Weather Dashboard</title>
 </head>
 
 <body>
     <header class="hero" id="navigation">
-        <p class="hero-body">Weather Dashboard</p>
+        <p class="hero-body headerStyle">Weather Dashboard</p>
     </header>
 
 
@@ -20,9 +24,10 @@
         <div class="tile is-parent is-3">
             <article class="tile is-child notification ">
                 <div class="content">
-                    <p class="title">Search for a City:</p>
-                    <input id="citySearched"></input>
-                    <button type="text" id="citySearch">Search</button>
+                    <p class="subtitle searchFont">Search for a City:</p>
+                    <div><input class="input is-small" id="citySearched"></input>
+                    <button type="text" class="button is-small " id="citySearch"><i class="fas fa-search"></i></button>
+                    </div>
                     <div class=" history">
                     </div>
                 </div>
@@ -31,7 +36,8 @@
 
         <div class="tile is-parent is-9">
             <article class="tile is-child notification ">
-                <div class="title">City: <span id="cityName"></span></div>
+                <div class="title"><span id="cityName">City</span></div>
+                <br>
                 <div class="subtitle">Temperature: <span id="temperature"></span> °F</div>
                 <div class="subtitle">Humidity: <span id="humidity"></span>%</div>
                 <div class="subtitle">Wind Speed: <span id="windSpeed"></span> MPH</div>
@@ -51,16 +57,7 @@
             <div class="day5"></div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
