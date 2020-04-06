@@ -1,6 +1,12 @@
 $("#citySearch").on("click", function (e) {
     weatherPull();
+    var currentSearch = $("#citySearched").val()
+    var createP = $("<p>", {class: "box"})
+    var getHistory = $(".history")
+    getHistory.prepend(createP.text(currentSearch))
+
 });
+
 function weatherPull() {
     var weatherApiKey = "&appid=b8b85456ce2e8007f70d09f5a693fd00";
     var searchedCity = $("#citySearched").val();
@@ -30,8 +36,33 @@ function weatherPull() {
             url: uvCompleteUrl,
             method: "GET"
         }).then(function (response){
+            var uvIndex = response.value;
             var placeForUv = $("#uvIndex");
+            if (uvIndex <= 2){
+                $("#uvIndex").text(response.value);
+                $("#uvIndex").removeClass("yellowBackGround orangeBackGround redBackGround")
+                $("#uvIndex").addClass("greenBackGround")
+            } else if (uvIndex > 2 && uvIndex <= 5){
+                $("#uvIndex").text(response.value);
+                $("#uvIndex").removeClass("greenBackGround orangeBackGround redBackGround")
+                $("#uvIndex").addClass("yellowBackGround")
+            } else if (uvIndex > 5 && uvIndex <= 8){
+                $("#uvIndex").text(response.value);
+                $("#uvIndex").removeClass("yellowBackGround greenBackGround redBackGround")
+                $("#uvIndex").addClass("orangeBackGround")
+            } else {
+                $("#uvIndex").text(response.value);
+                $("#uvIndex").removeClass("yellowBackGround orangeBackGround greenBackGround")
+                $("#uvIndex").addClass("redBackGround")
+            };
+
+
+            
             placeForUv.text(response.value);
+
+
+
+
         });
 
         var fiveDayUrl = "http://api.openweathermap.org/data/2.5/forecast?q="
@@ -42,17 +73,28 @@ function weatherPull() {
             method: "GET"
         }).then(function(response){
             var fiveDayArray = [response.list[0], response.list[8], response.list[16], response.list[24], response.list[32]];
+            console.log(response)
             for (i = 0; i < fiveDayArray.length; i++){
-                var newTile = $("<div>", {class: "tile is-parent alignedRight"})
-                var newDiv = $("<div>", {class: "is-child tile notification"});
+
+
+
+
+
+
+                console.log(fiveDayArray[i].dt_txt)
+                var fiveDayDate = $("<p>").text("Date: " + fiveDayArray[i].dt_txt)
+                var newTile = $("<div>", {class: "tile is-parent alignedRight "})
+                var newDiv = $("<div>", {class: "is-child tile notification fiveDayStyle blueBackGround"});
                 var toFahrenheit =  (((fiveDayArray[i].main.temp-273.15)*1.8)+32).toFixed(1);
-                var nextDayTemp = $("<p>").text("Temp: " + toFahrenheit + " °F");
-                var nextDayHumid = $("<p>").text("Humidity: " + fiveDayArray[i].main.humidity + " %");
+                var nextDayTemp = $("<p>").text("Temp: " + toFahrenheit + "°F");
+                var nextDayHumid = $("<p>").text("Humidity: " + fiveDayArray[i].main.humidity + "%");
                 newTile.append(newDiv)
+                newDiv.append(fiveDayDate)
                 newDiv.append(nextDayTemp);
                 newDiv.append(nextDayHumid);
-                $("#fiveDayBox").append(newTile)
-                //fiveDayArray[i].main.temp
+                var fiveDayBox = $("#fiveDayBox")
+                fiveDayBox.append(newTile)
+                fiveDayBox.children().first().remove()
                 
 
 

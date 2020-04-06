@@ -13,3 +13,29 @@
 .alignedRight{
     justify-content: flex-end;
 }
+.box{
+    padding: .25rem;
+    margin-bottom: .25rem !important;
+}
+.content {
+    margin-bottom: 5px;
+}
+.fiveDayStyle {
+    padding: .75rem .50rem;
+}
+.greenBackGround{
+    background-color: green;
+}
+.yellowBackGround{
+    background-color: yellow;
+}
+.orangeBackGround{
+    background-color: orange;
+}
+.redBackGround{
+    background-color: red;
+}
+.blueBackGround {
+    background-color: blue;
+    color: white;
+}
